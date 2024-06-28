@@ -19,11 +19,16 @@ export default function Calculator() {
 
     function handleSubmit(event){
         event.preventDefault()
-        console.log((Number(bill)*Number(tip))/100)
+
+        setBill(Number(bill))
+        setTip(Number(tip))
+        setPeople(Number(people))
+
     
     }
 
     return (
+        <main>
         <form>
             <label htmlFor="Total_Bill">Total Bill</label>
             <input id="Total_Bill" type="number" onChange={handleBill}/> <br />
@@ -36,7 +41,11 @@ export default function Calculator() {
 
 
             <input type="submit" value="Submit" onClick={handleSubmit} />
-            <p> </p>
+            
         </form>
-    )
+
+        <p>Total amount to pay is £{bill + bill * tip/100}</p>
+        <p>Total amount per person is £{(bill + ((bill * tip)/100)) / people}</p>
+        </main>
+        )
 }
